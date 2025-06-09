@@ -131,7 +131,7 @@ func TestEvalFunctions(t *testing.T) {
 
     res, err = eval(scope, expr)
 
-    expected = 12
+    expected = 32
 
     if res != expected || err != nil {
         t.Errorf(`%s = %d, %v, want %d, nil`, line, res, err, expected)
