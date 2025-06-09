@@ -7,7 +7,7 @@ Lipa is a toki pona inspired dialect of the [Lisp](https://en.wikipedia.org/wiki
 Currently the program consists of a simple repl that can evaluate addition and simple conditionals, 
 this of course won't stay this way for long as I do plan to improve on the interpreter further.
 
-## Keywords:
+## Keywords
 - '+' = sin : add
 - '-' = weka : subtract
 - '\*' = li mute : multiply
