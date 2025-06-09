@@ -7,7 +7,7 @@ Lipa is a toki pona inspired dialect of the [Lisp](https://en.wikipedia.org/wiki
 Currently the program consists of a simple repl that can only evaluate addition, this of course shouldn't stay this way for long as I do plan
 to improve on this further.
 
-## Current keywords:
+## Keywords:
 - '+' = sin : add
 
 ## Example usage
