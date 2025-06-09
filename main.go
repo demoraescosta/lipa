@@ -8,7 +8,12 @@ import (
     "bufio"
     "os"
     "errors"
+    "unsafe"
 )
+
+func boolToInt(b bool) int {
+    return int(*(*byte)(unsafe.Pointer(&b)))
+}
 
 type Token struct {
     t string
@@ -32,11 +37,6 @@ func readSymbol(symbol string) Token {
     } else if _, err := strconv.ParseFloat(symbol, 32); err == nil {
         return Token{ FLOAT, symbol}
     }
-
-    // if symbol[0] == '"' && symbol[len(symbol)-1] == '"' {
-    //     str := strings.ReplaceAll(symbol, "\"", "")
-    //     return Token{ STRING, str }
-    // }
 
     return Token{ SYMBOL, symbol}
 }
@@ -136,12 +136,6 @@ func (p *Parser) GetExpr() *Expr {
         expr = *p.GetExpr()
     case SYMBOL:
         switch tok.value {
-        case "+":
-            expr.value_kind = EXPR_KEWORD
-            expr.value = "+"
-            expr.left = p.GetExpr()
-            expr.right = p.GetExpr()
-
         default:
             expr.value_kind = EXPR_SYMBOL
             expr.value = tok.value
@@ -166,7 +160,7 @@ func eval(expr *Expr) (int, error) {
     }
 
     switch expr.value_kind {
-    case EXPR_KEWORD:
+    case EXPR_SYMBOL:
         switch expr.value {
         case "+":
             x, err := eval(expr.left)
@@ -181,7 +175,70 @@ func eval(expr *Expr) (int, error) {
 
             res := x + y
             return res, nil
+        case "-":
+            x, err := eval(expr.left)
+            if err != nil {
+                return 0, err
+            }
 
+            y, err := eval(expr.right)
+            if err != nil {
+                return 0, err
+            }
+
+            res := x - y
+            return res, nil
+        case "*":
+            x, err := eval(expr.left)
+            if err != nil {
+                return 0, err
+            }
+
+            y, err := eval(expr.right)
+            if err != nil {
+                return 0, err
+            }
+
+            res := x * y
+            return res, nil
+        case "/":
+            x, err := eval(expr.left)
+            if err != nil {
+                return 0, err
+            }
+
+            y, err := eval(expr.right)
+            if err != nil {
+                return 0, err
+            }
+
+            res := x / y
+            return res, nil
+        case "=":
+            x, err := eval(expr.left)
+            if err != nil {
+                return 0, err
+            }
+
+            y, err := eval(expr.right)
+            if err != nil {
+                return 0, err
+            }
+
+            res := boolToInt(x == y)
+            return res, nil
+
+        case "la":
+            x, err := eval(expr.left)
+            if err != nil {
+                return 0, err
+            }
+
+            if x != 0 {
+                return eval(expr.right)
+            } else {
+                return 0, nil
+            }
         default:
             fmt.Printf("nasa ijo: << %s >>\n", expr.value)
             return 0, errors.New("nasa-ijo")
