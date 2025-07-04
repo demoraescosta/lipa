@@ -4,8 +4,7 @@
 
 Lipa is a toki pona variant of the [Lisp](https://en.wikipedia.org/wiki/Lisp_(programming_language)) programming language written in Go.
 
-Currently the program consists of a simple repl that can evaluate addition and simple conditionals and functions,
-this of course won't stay this way for long as I do plan to improve on the interpreter further.
+Currently the program consists of a simple repl that can evaluate addition and simple conditionals and functions.
 
 ## Keywords
 - '+' = sin : add
