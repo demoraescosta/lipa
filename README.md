@@ -2,7 +2,7 @@
 
 #### e toki tawa ilo sona
 
-Lipa is a toki pona variant of the [Lisp](https://en.wikipedia.org/wiki/Lisp_(programming_language)) programming language written in Go.
+Lipa is a [toki pona](https://tokipona.org/) variant of the [Lisp](https://en.wikipedia.org/wiki/Lisp_(programming_language)) programming language written in Go.
 
 Currently the program consists of a simple repl that can evaluate addition, simple conditionals and functions.
 
